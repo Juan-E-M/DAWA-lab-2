@@ -43,9 +43,11 @@ router.get('/contact', function(req, res, next) {
 router.post('/contact-single', function(req, res, next) {
   const name = req.body.name; 
   const email = req.body.email; 
+  const number = req.body.number; 
+  const nacimiento = req.body.nacimiento; 
   const subject = req.body.subject;  
   const message = req.body.message;
-  res.render('contact-single', { title: 'Contact-single' ,name,email,subject,message });
+  res.render('contact-single', { title: 'Contact-single' ,name,email,number,nacimiento,subject,message });
 });
 
 module.exports = router;
