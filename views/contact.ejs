@@ -143,6 +143,13 @@
       fechaNacimiento.addEventListener('input', () => {
       const hoy = new Date();
       const fechaIngresada = new Date(fechaNacimiento.value);
+
+      // Validar que la fecha ingresada no sea mayor a la fecha actual
+      if (fechaIngresada > hoy) {
+        fechaNacimiento.setCustomValidity('La fecha ingresada no puede ser mayor a la fecha actual');
+        return;
+      }
+
       const anios = hoy.getFullYear() - fechaIngresada.getFullYear();
       const mes = hoy.getMonth() - fechaIngresada.getMonth();
 
