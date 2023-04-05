@@ -50,7 +50,7 @@
               </div>
               <div class="form-group">
                 <label>Fecha de nacimiento</label>
-                <input type="date" name="nacimiento" class="form-control"  required>
+                <input type="date" name="nacimiento" id="nacimiento" class="form-control"  required>
               </div>
               <div class="form-group">
                 <textarea name="message" id="mensaje" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
@@ -93,6 +93,7 @@
       const correo = document.getElementById('correo')
       const numero = document.getElementById('numero')
       const mensaje = document.getElementById('mensaje')
+      const fechaNacimiento = document.getElementById('nacimiento');
 
       const regex = /^[a-zA-Z\s]+$/;
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -138,6 +139,23 @@
           mensaje.setCustomValidity('');
         }
       });
+
+      fechaNacimiento.addEventListener('input', () => {
+      const hoy = new Date();
+      const fechaIngresada = new Date(fechaNacimiento.value);
+      const anios = hoy.getFullYear() - fechaIngresada.getFullYear();
+      const mes = hoy.getMonth() - fechaIngresada.getMonth();
+
+      if (mes < 0 || (mes === 0 && hoy.getDate() < fechaIngresada.getDate())) {
+        anios--;
+      }
+
+      if (anios < 18) {
+        fechaNacimiento.setCustomValidity('Debe ser mayor a 18 años');
+      } else {
+        fechaNacimiento.setCustomValidity('');
+      }
+    });
     </script>
     <%- include layouts/footer.ejs %>
 
