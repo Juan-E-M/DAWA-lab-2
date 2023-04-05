@@ -5,8 +5,8 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-8 ftco-animate text-center">
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact</span></p>
-            <h1 class="mb-3 bread">Contact Us</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Inicio</a></span> <span>Contacto</span></p>
+            <h1 class="mb-3 bread">Contáctanos</h1>
           </div>
         </div>
       </div>
@@ -16,14 +16,14 @@
       <div class="container">
         <div class="row d-flex mb-5 contact-info">
           <div class="col-md-12 mb-4">
-            <h2 class="h4">Contact Information</h2>
+            <h2 class="h4">Información de contacto</h2>
           </div>
           <div class="w-100"></div>
           <div class="col-md-3">
-            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+            <p><span>Direccción:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
           </div>
           <div class="col-md-3">
-            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+            <p><span>Teléfono:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
           </div>
           <div class="col-md-3">
             <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
@@ -34,33 +34,32 @@
         </div>
         <div class="row block-9">
           <div class="col-md-6 pr-md-5">
-          	<h4 class="mb-4">Do you have any questions?</h4>
+          	<h4 class="mb-4">¿Qué preguntas tienes?</h4>
             <form method="POST" action="contact-single">
               <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="Your Name">
+                <input type="text" name="name" id="nombre" class="form-control" placeholder="Nombres" required>
               </div>
               <div class="form-group">
-                <input type="text" name="email" class="form-control" placeholder="Your Email">
+                <input type="text" name="lastname" id="apellido" class="form-control" placeholder="Apellidos" required>
               </div>
               <div class="form-group">
-                <input type="text" name="number" class="form-control" placeholder="Number">
+                <input type="text" name="email" id="correo" class="form-control" placeholder="Email" required>
               </div>
               <div class="form-group">
-                <input type="date" name="nacimiento" class="form-control" placeholder="Birthdate">
+                <input type="number" name="number" id="numero" class="form-control" placeholder="Número telefónico" required>
               </div>
               <div class="form-group">
-                <input type="text" name="subject" class="form-control" placeholder="Subject">
+                <label>Fecha de nacimiento</label>
+                <input type="date" name="nacimiento" class="form-control"  required>
               </div>
               <div class="form-group">
-                <textarea name="message" id="" cols="30" rows="7" class="form-control" minlength="150" placeholder="Message"></textarea>
+                <textarea name="message" id="mensaje" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
               </div>
             </form>
-          
           </div>
-
           <div class="col-md-6" id="map"></div>
         </div>
       </div>
@@ -88,5 +87,58 @@
         </div>
       </div>
     </section>
+    <script>
+      const nombre = document.getElementById('nombre');
+      const apellido = document.getElementById('apellido');
+      const correo = document.getElementById('correo')
+      const numero = document.getElementById('numero')
+      const mensaje = document.getElementById('mensaje')
 
+      const regex = /^[a-zA-Z\s]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^[1-9]\d{8}$/;
+      const messageRegex = /^.{150,}$/;
+      
+      nombre.addEventListener('input', () => {
+        if (!regex.test(nombre.value)) {
+          nombre.setCustomValidity('Ingrese solo letras y espacios');
+        } else {
+          nombre.setCustomValidity('');
+        }
+      });
+      
+      apellido.addEventListener('input', () => {
+        if (!regex.test(apellido.value)) {
+          apellido.setCustomValidity('Ingrese solo letras y espacios');
+        } else {
+          apellido.setCustomValidity('');
+        }
+      });
+
+      correo.addEventListener('input', () => {
+        if (!emailRegex.test(correo.value)) {
+          correo.setCustomValidity('Ingrese un correo electrónico válido');
+        } else {
+          correo.setCustomValidity('');
+        }
+      });
+
+      numero.addEventListener('input', () => {
+        if (!phoneRegex.test(numero.value)) {
+          numero.setCustomValidity('Ingrese un número de celular válido de 9 dígitos');
+        } else {
+          numero.setCustomValidity('');
+        }
+      });
+
+      mensaje.addEventListener('input', () => {
+        if (!messageRegex.test(mensaje.value)) {
+          mensaje.setCustomValidity('Ingrese un mensaje de al menos 150 caracteres');
+        } else {
+          mensaje.setCustomValidity('');
+        }
+      });
+    </script>
     <%- include layouts/footer.ejs %>
+
+    

@@ -9,15 +9,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'About' });
+  res.render('about', { title: 'Nosotros' });
 });
 
 router.get('/course', function(req, res, next) {
-  res.render('course', { title: 'Course' });
-});
-
-router.get('/teacher', function(req, res, next) {
-  res.render('teacher', { title: 'Teacher' });
+  res.render('course', { title: 'Servicios' });
 });
 
 router.get('/blog', function(req, res, next) {
@@ -25,11 +21,7 @@ router.get('/blog', function(req, res, next) {
 });
 
 router.get('/event', function(req, res, next) {
-  res.render('event', { title: 'Event' });
-});
-
-router.get('/teacher-single', function(req, res, next) {
-  res.render('teacher-single', { title: 'Teacher-single' });
+  res.render('event', { title: 'Eventos' });
 });
 
 router.get('/blog-single', function(req, res, next) {
@@ -37,17 +29,17 @@ router.get('/blog-single', function(req, res, next) {
 });
 
 router.get('/contact', function(req, res, next) {
-  res.render('contact', { title: 'Contact' });
+  res.render('contact', { title: 'Contacto' });
 });
 
 router.post('/contact-single', function(req, res, next) {
-  const name = req.body.name; 
+  const name = req.body.name;
+  const lastname = req.body.lastname;  
   const email = req.body.email; 
   const number = req.body.number; 
   const nacimiento = req.body.nacimiento; 
-  const subject = req.body.subject;  
   const message = req.body.message;
-  res.render('contact-single', { title: 'Contact-single' ,name,email,number,nacimiento,subject,message });
+  res.render('contact-single', { title: 'Contact-single' ,name,email,number,nacimiento,lastname,message });
 });
 
 module.exports = router;
